@@ -4,7 +4,7 @@
 pkgname=python-dulwich
 _name=${pkgname#python-}
 pkgver=0.21.6
-pkgrel=1
+pkgrel=2
 pkgdesc='Pure-Python implementation of the Git file formats and protocols'
 arch=('x86_64')
 url=https://www.dulwich.io
@@ -26,8 +26,9 @@ optdepends=(
   'python-pyopenssl: for HTTPS support via urllib3'
   'python-pyinotify: to watch for changes to refs'
 )
-source=("git+https://github.com/jelmer/dulwich.git")
+source=("git+https://github.com/jelmer/dulwich.git#tag=dulwich-$pkgver?signed")
 b2sums=('SKIP')
+validpgpkeys=('DC837EE14A7E37347E87061700806F2BD729A457') # Jelmer Vernooĳ <jelmer@jelmer.uk>
 
 build() {
   cd "$_name"
