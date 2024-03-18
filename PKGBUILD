@@ -27,7 +27,7 @@ optdepends=(
   'python-pyinotify: to watch for changes to refs'
 )
 source=("git+https://github.com/jelmer/dulwich.git#tag=dulwich-$pkgver?signed")
-b2sums=('SKIP')
+b2sums=('d0883536089a129f96fe3e2b00e90d9eb8e1ec70dc2637acccbe4102a045ef77e3b2ce0cce2ebb6ccef3ec54d37687707745fb11e73e099291ab49cae64d4c59')
 validpgpkeys=('DC837EE14A7E37347E87061700806F2BD729A457') # Jelmer Vernooĳ <jelmer@jelmer.uk>
 
 build() {
