@@ -1,7 +1,7 @@
 pkgbase = python-dulwich
 	pkgdesc = Pure-Python implementation of the Git file formats and protocols
-	pkgver = 0.21.7
-	pkgrel = 2
+	pkgver = 0.22.1
+	pkgrel = 1
 	url = https://www.dulwich.io
 	arch = x86_64
 	license = GPL
@@ -10,8 +10,9 @@ pkgbase = python-dulwich
 	makedepends = git
 	makedepends = python-build
 	makedepends = python-installer
-	makedepends = python-setuptools
+	makedepends = python-setuptools-rust
 	makedepends = python-wheel
+	depends = python-setuptools
 	depends = python-urllib3
 	optdepends = python-fastimport: for fast-import support
 	optdepends = python-gpgme: for PGP signature support
@@ -19,8 +20,7 @@ pkgbase = python-dulwich
 	optdepends = python-paramiko: for use as the SSH implementation
 	optdepends = python-pyopenssl: for HTTPS support via urllib3
 	optdepends = python-pyinotify: to watch for changes to refs
-	source = git+https://github.com/jelmer/dulwich.git#tag=dulwich-0.21.7?signed
-	validpgpkeys = DC837EE14A7E37347E87061700806F2BD729A457
-	b2sums = d0883536089a129f96fe3e2b00e90d9eb8e1ec70dc2637acccbe4102a045ef77e3b2ce0cce2ebb6ccef3ec54d37687707745fb11e73e099291ab49cae64d4c59
+	source = git+https://github.com/jelmer/dulwich.git#tag=dulwich-0.22.1
+	b2sums = 5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800
 
 pkgname = python-dulwich
