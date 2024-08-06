@@ -1,3 +1,7 @@
+# SPDX-License-Identifier: AGPL-3.0
+#
+# Maintainer: Truocolo <truocolo@aol.com>
+# Maintainer: Pellegrino Prevete (tallero) <pellegrinoprevete@gmail.com>
 # Maintainer: Daniel M. Capella <polyzen@archlinux.org>
 # Contributor: Timothée Ravier <tim@siosm.fr>
 
@@ -6,10 +10,22 @@ _name=${pkgname#python-}
 pkgver=0.22.1
 pkgrel=1
 pkgdesc='Pure-Python implementation of the Git file formats and protocols'
-arch=('x86_64')
+arch=(
+  'x86_64'
+  'arm'
+  'aarch64'
+  'armv7l'
+  'mips'
+  'powerpc'
+  'i686'
+  'pentium4'
+)
 url=https://www.dulwich.io
 license=('GPL')
-depends=('python-setuptools' 'python-urllib3')
+depends=(
+  'python-setuptools'
+  'python-urllib3'
+)
 makedepends=(
   'git'
   'python-build'
@@ -17,7 +33,10 @@ makedepends=(
   'python-setuptools-rust'
   'python-wheel'
 )
-checkdepends=('python-gpgme' 'python-paramiko')
+checkdepends=(
+  'python-gpgme'
+  'python-paramiko'
+)
 optdepends=(
   'python-fastimport: for fast-import support'
   'python-gpgme: for PGP signature support'
@@ -26,8 +45,12 @@ optdepends=(
   'python-pyopenssl: for HTTPS support via urllib3'
   'python-pyinotify: to watch for changes to refs'
 )
-source=("git+https://github.com/jelmer/dulwich.git#tag=dulwich-$pkgver")
-b2sums=('5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800')
+source=(
+  "git+https://github.com/jelmer/dulwich.git#tag=dulwich-$pkgver"
+)
+b2sums=(
+  '5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800'
+)
 #validpgpkeys=('DC837EE14A7E37347E87061700806F2BD729A457') # Jelmer Vernooĳ <jelmer@jelmer.uk>
 
 prepare() {
@@ -38,7 +61,8 @@ prepare() {
 
 build() {
   cd "$_name"
-  python -m build --wheel --skip-dependency-check --no-isolation
+  python \
+    -m build --wheel --skip-dependency-check --no-isolation
 }
 
 check() {
@@ -48,5 +72,5 @@ check() {
 
 package() {
   cd "$_name"
-  python -m installer --destdir="$pkgdir" dist/*.whl
 }
+
