@@ -5,6 +5,7 @@
 # Maintainer: Daniel M. Capella <polyzen@archlinux.org>
 # Contributor: Timothée Ravier <tim@siosm.fr>
 
+_git=false
 _py="python"
 _pkg=dulwich
 pkgname="${_py}-${_pkg}"
@@ -31,7 +32,6 @@ depends=(
   "${_py}-urllib3"
 )
 makedepends=(
-  'git'
   "${_py}-build"
   "${_py}-installer"
   "${_py}-setuptools-rust"
@@ -49,7 +49,7 @@ optdepends=(
   "${_py}-pyopenssl: for HTTPS support via urllib3"
   "${_py}-pyinotify: to watch for changes to refs"
 )
-_htt="https://github.com"
+_http="https://github.com"
 _ns="jelmer"
 _url="${_http}/${_ns}/${_pkg}"
 source=(
@@ -65,6 +65,9 @@ b2sums=(
     '5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800'
   )
 [[ "${_git}" == true ]] && \
+  makedepends+=(
+    git
+  )
   source+=(
     "${_url}/archive/refs/tags/${_pkg}-${pkgver}.tar.gz"
   ) && \
