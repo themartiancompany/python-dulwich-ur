@@ -9,8 +9,8 @@ _git=false
 _py="python"
 _pkg=dulwich
 pkgname="${_py}-${_pkg}"
-_name="${_pkg}"
 pkgver=0.22.1
+_commit="0fa636dc03e43477199ad7aefd917b628e93b29d"
 pkgrel=1
 pkgdesc='Pure-Python implementation of the Git file formats and protocols'
 arch=(
@@ -49,6 +49,9 @@ optdepends=(
   "${_py}-pyopenssl: for HTTPS support via urllib3"
   "${_py}-pyinotify: to watch for changes to refs"
 )
+provides=(
+  "${_pkg}"
+)
 _http="https://github.com"
 _ns="jelmer"
 _url="${_http}/${_ns}/${_pkg}"
@@ -56,20 +59,19 @@ source=(
 )
 b2sums=(
 )
-[[ "${_git}" == false ]] && \
+[[ "${_git}" == 'false' ]] && \
   source+=(
-    "git+${_url}.git#tag=${_pkg}-${pkgver}"
     "${_url}/archive/refs/tags/${_pkg}-${pkgver}.tar.gz"
   ) && \
   b2sums+=(
-    '5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800'
+    'aa6e5fd283468710173cb096a3537686de9ced834d9a5d984e528e443e55466583c356a29638533bf47aacc514d18df52703a96b5b8b16355a84d6ed7c13fb2b'
   )
-[[ "${_git}" == true ]] && \
+[[ "${_git}" == 'true' ]] && \
   makedepends+=(
     git
   )
   source+=(
-    "${_url}/archive/refs/tags/${_pkg}-${pkgver}.tar.gz"
+    "${_pkg}-${pkgver}::git+${_url}.git#commit=${_commit}"
   ) && \
   b2sums+=(
     '5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800'
@@ -81,7 +83,7 @@ b2sums=(
 
 prepare() {
   cd \
-    "$_name"
+    "${_pkg}-${pkgver}"
   # https://github.com/jelmer/dulwich/issues/1293
   git \
     cherry-pick \
@@ -90,7 +92,8 @@ prepare() {
 }
 
 build() {
-  cd "$_name"
+  cd \
+    "${_pkg}-${pkgver}"
   "${_py}" \
     -m \
       build \
@@ -101,7 +104,7 @@ build() {
 
 check() {
   cd \
-    "${_name}"
+    "${_pkg}-${pkgver}"
   PYTHONPATH="${PWD}/dulwich:${PYTHONPATH}" \
   "${_py}" \
     -m \
@@ -112,7 +115,7 @@ check() {
 
 package() {
   cd \
-    "${_pkg}"
+    "${_pkg}-${pkgver}"
   "${_py}" \
     -m \
       installer \

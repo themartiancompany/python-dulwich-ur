@@ -4,10 +4,16 @@ pkgbase = python-dulwich
 	pkgrel = 1
 	url = https://www.dulwich.io
 	arch = x86_64
+	arch = arm
+	arch = aarch64
+	arch = armv7l
+	arch = mips
+	arch = powerpc
+	arch = i686
+	arch = pentium4
 	license = GPL
 	checkdepends = python-gpgme
 	checkdepends = python-paramiko
-	makedepends = git
 	makedepends = python-build
 	makedepends = python-installer
 	makedepends = python-setuptools-rust
@@ -20,7 +26,9 @@ pkgbase = python-dulwich
 	optdepends = python-paramiko: for use as the SSH implementation
 	optdepends = python-pyopenssl: for HTTPS support via urllib3
 	optdepends = python-pyinotify: to watch for changes to refs
-	source = git+https://github.com/jelmer/dulwich.git#tag=dulwich-0.22.1
+	source = https://github.com/jelmer/dulwich/archive/refs/tags/dulwich-0.22.1.tar.gz
+	source = dulwich-0.22.1::git+https://github.com/jelmer/dulwich.git#commit=0fa636dc03e43477199ad7aefd917b628e93b29d
+	b2sums = aa6e5fd283468710173cb096a3537686de9ced834d9a5d984e528e443e55466583c356a29638533bf47aacc514d18df52703a96b5b8b16355a84d6ed7c13fb2b
 	b2sums = 5c263266b7e7205efbe1be1bbbac50258c8229f166961b83fdcdb3d87780c31489886eb83ce2defafe86fedafb027ae334fcc7bfb49d212de96f06e819236800
 
 pkgname = python-dulwich
