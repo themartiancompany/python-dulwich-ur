@@ -7,6 +7,15 @@
 
 _git=false
 _py="python"
+_pyver="$( \
+  "${_py}" \
+    -V | \
+    awk \
+      '{print $2}')"
+_pymajver="${_pyver%.*}"
+_pyminver="${_pymajver#*.}"
+_pynextver="${_pymajver%.*}.$(( \
+  ${_pyminver} + 1))"
 _pkg=dulwich
 pkgname="${_py}-${_pkg}"
 pkgver=0.22.1
@@ -28,6 +37,8 @@ license=(
   'GPL'
 )
 depends=(
+  "${_py}>=${_pymajver}"
+  "${_py}<${_pynextver}"
   "${_py}-setuptools"
   "${_py}-urllib3"
 )
