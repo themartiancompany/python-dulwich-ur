@@ -18,6 +18,8 @@ pkgbase = python-dulwich
 	makedepends = python-installer
 	makedepends = python-setuptools-rust
 	makedepends = python-wheel
+	depends = python>=3.12
+	depends = python<3.13
 	depends = python-setuptools
 	depends = python-urllib3
 	optdepends = python-fastimport: for fast-import support
@@ -26,6 +28,7 @@ pkgbase = python-dulwich
 	optdepends = python-paramiko: for use as the SSH implementation
 	optdepends = python-pyopenssl: for HTTPS support via urllib3
 	optdepends = python-pyinotify: to watch for changes to refs
+	provides = dulwich
 	source = https://github.com/jelmer/dulwich/archive/refs/tags/dulwich-0.22.1.tar.gz
 	source = dulwich-0.22.1::git+https://github.com/jelmer/dulwich.git#commit=0fa636dc03e43477199ad7aefd917b628e93b29d
 	b2sums = aa6e5fd283468710173cb096a3537686de9ced834d9a5d984e528e443e55466583c356a29638533bf47aacc514d18df52703a96b5b8b16355a84d6ed7c13fb2b
